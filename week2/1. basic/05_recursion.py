@@ -45,8 +45,6 @@ def factorial(n):
 
 
 
-
-
 def fibonacci(n):
     """
     재귀를 사용한 피보나치 수 계산
@@ -66,9 +64,9 @@ def fibonacci(n):
     pass
     
     # TODO: recursive case를 작성하세요
-    # return fibonacci(n-1) + fibonacci(n-2)
-    return (2*(fibonacci(n-2))) + (n-1)
+    return fibonacci(n-1) + fibonacci(n-2)
     pass
+
 
 
 
