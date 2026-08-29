@@ -75,6 +75,9 @@ Q4. 그냥 파이썬 list 쓰면 안 되나요?
       에서 더 유리합니다. 자료구조를 직접 구현해 보는 학습용 문제예요.
 
 
+
+
+
 ===============================================================
 🛠 풀이 가이드 (Level 별)
 ===============================================================
@@ -113,6 +116,12 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
+
+
+
+
+
+
     def append(self, data):
         """
         리스트 끝에 노드 추가
@@ -132,10 +141,9 @@ class LinkedList:
         # ─── Level 1: 리스트가 비어 있는 경우 ────────────────────────
         # 힌트: self.head 가 None 이면, head 에 new_node 를 바로 꽂고 return.
         # TODO: 아래 pass 를 지우고 if 문을 완성하세요.
-        #   if self.head is None:
-        #       self.head = new_node
-        #       return
-        pass
+        if (self.head == None):  # No nodes yet
+            self.head = new_node
+            return
 
         # ─── Level 2: 마지막 노드 찾기 ──────────────────────────────
         # head 부터 시작해서 next 가 None 이 될 때까지 따라갑니다.
@@ -144,11 +152,14 @@ class LinkedList:
         # TODO: while 문으로 current 를 마지막 노드까지 이동시키세요.
         #   while current.next is not None:
         #       current = current.next
+        while (current.next != None):
+            current = current.next
         pass
 
         # ─── Level 3: 마지막 노드의 next 에 새 노드를 붙이기 ─────────
         # 위 반복문이 끝나면 current 가 곧 마지막 노드입니다.
         # TODO: current.next = new_node
+        current.next = new_node
         pass
 
     def print_list(self):
@@ -162,6 +173,7 @@ class LinkedList:
         # ─── Level 1: 시작 위치 ─────────────────────────────────────
         # current 라는 "이동용 변수" 를 head 에서 시작시킵니다.
         # TODO: current = self.head
+        current = self.head
         pass
 
         # ─── Level 2: 끝까지 순회 ──────────────────────────────────
@@ -171,9 +183,17 @@ class LinkedList:
         #   while current is not None:
         #       values.append(current.data)
         #       current = current.next
+        while (current != None):
+            values.append(current.data)
+            current = current.next
         pass
 
         return values
+
+
+
+
+
 
 
 if __name__ == "__main__":
