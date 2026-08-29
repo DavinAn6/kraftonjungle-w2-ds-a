@@ -144,7 +144,12 @@ def combinations(n: int, k: int) -> list:
         # if len(current_combination) == ...:
         #     result.append(...)
         #     return
+        if current_combination is not None and len(current_combination) == k:
+          result.append(current_combination)
+          return 
         pass  
+
+
 
         # ──────────────────────────────────────────────────────────────────
         # [Level 2] 가지치기 반복문
@@ -154,6 +159,12 @@ def combinations(n: int, k: int) -> list:
         # - 반복문 변수 이름은 num 으로 추천 (의미: "이번에 고를 숫자").
         #
         # TODO(Level 2): 아래 한 줄을 작성하세요.
+        if (start <= n):
+          backtrack(start + 1, current_combination.append(start))  # 조합에 start 숫자가 포함되었을 경우
+          backtrack(start + 1, current_combination)  # 조합에 start 숫자가 포함되지 않았을 경우
+          return
+        else:
+          return
         pass
 
             # ──────────────────────────────────────────────────────────────
@@ -168,10 +179,15 @@ def combinations(n: int, k: int) -> list:
             # current_combination.append(...)
             # backtrack(..., current_combination)
             # current_combination.pop()
+            
 
     # 처음 호출: 시작 숫자는 1, 지금까지 고른 숫자는 비어 있음
     backtrack(1, [])
     return result
+
+
+
+
 
 
 # ============================================================================
