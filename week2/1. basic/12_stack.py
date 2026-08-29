@@ -47,6 +47,12 @@ def is_valid_parentheses(s):
     # TODO: 반복이 끝나면 스택이 비어있는지 확인
     pass
 
+
+
+
+
+
+
 # 테스트 케이스
 if __name__ == "__main__":
     # 테스트 케이스 1
