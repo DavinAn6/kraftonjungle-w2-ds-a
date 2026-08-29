@@ -36,29 +36,22 @@ def is_palindrome(s):
     """
     # TODO: 알파벳과 숫자만 남기고 소문자로 변환하세요
     # 힌트: isalnum() 메서드와 lower() 메서드 사용
-    index = 0  
-    length = len(s)  # length of string
-    while (index < length):
-        if s[index].isalnum() == False:  # string has non alphanumeric at index 
-            s = s[:index] + s[index+1:]  # remove character through string slicing
-            length = length - 1  # string length reduces by 1 and index stays the same
-        else:
-            index = index + 1  # string has alphanumeric at index. Move to next character
-    s = s.lower() 
+    alnum_string = ""
+    for char in s:
+        if char.isalnum() == True:
+            alnum_string = alnum_string + char
+    s = alnum_string.lower() 
     pass
     
     # TODO: 정제된 문자열이 회문인지 확인하세요
     # 방법1: 문자열을 뒤집어서 비교 ([::-1] 사용)
     # 방법2: 양 끝 인덱스를 이용한 투 포인터 방식
-    half = (length // 2)  # Integer division (7 // 2 => 3)
+    half = (len(s) // 2)  # Integer division (7 // 2 => 3)
     for i in range(0, half):  
-        if s[i] != s[length - i - 1]:  # Compare each half side of string
+        if s[i] != s[len(s) - i - 1]:  # Compare each half side of string
             return False  # Return false if characters don't match
     return True
     pass
-
-
-
 
 
 
