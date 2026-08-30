@@ -113,8 +113,9 @@ def extended_gcd(a, b):
     if b == 0:
         return (a, 1, 0)
     gcd_val = gcd(a, b)
-    x0 = extended_gcd(b, a%b)[2]
-    y0 = extended_gcd(b, a%b)[1] - (a // b) * extended_gcd(b, a%b)[2]
+    extended_gcd_tuple = extended_gcd(b, a%b)
+    x0 = extended_gcd_tuple[2]
+    y0 = extended_gcd_tuple[1] - (a // b) * extended_gcd_tuple[2]
     
     return (gcd_val, x0, y0)
     pass
