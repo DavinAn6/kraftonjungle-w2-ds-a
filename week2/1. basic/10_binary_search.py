@@ -43,13 +43,18 @@ def binary_search(arr, target):
     ## target이 더 크면 left = mid + 1
     ## target이 더 작으면 right = mid - 1
     
-    mid = ((right - left) // 2)
-    if arr[mid] == target:
-        return mid
-    if arr[mid] > target:
-        binary_search(arr[0:(mid - 1)], target)
-    if arr[mid] < target:
-        binary_search(arr[(mid + 1):right], target)
+    if (left <= right):
+        mid = ((left + right) // 2)
+        if (arr[mid] == target):
+            return mid
+        elif arr[mid] > target:
+            return binary_search(arr[left:mid], target)
+        elif arr[mid] < target:
+            return_val = binary_search(arr[(mid + 1):(right + 1)], target)
+            if (return_val == -1):
+                return -1
+            else:
+                return return_val + (mid + 1)
     
     pass
     return -1
