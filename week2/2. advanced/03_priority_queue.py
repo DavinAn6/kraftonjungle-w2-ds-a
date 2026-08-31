@@ -26,6 +26,8 @@
 
 import heapq
 
+
+
 def process_emergency_room(patients):
     """
     환자를 우선순위에 따라 처리
@@ -40,7 +42,14 @@ def process_emergency_room(patients):
     heap = []
     
     
+    """ 
+    Implement min-heap (every parent ≤ its children)
+    Note : heapq.heappush() orders the tuples based on the first element. 
+    I've reordered the tuple when adding to the heap to account for this.
+    """
     # TODO: 모든 환자를 힙에 추가
+    heap = [(b, a) for (a, b) in patients]
+    heapq.heapify(heap)
     pass
         
     processed = []
@@ -48,6 +57,10 @@ def process_emergency_room(patients):
     # TODO: 힙이 비어있지 않은 동안 반복
     ## 힙에서 우선순위가 가장 높은 환자 꺼내기
     ## 환자 처리
+    while len(heap) > 0:
+        tuple = heapq.heappop(heap)
+        processed.append(tuple[1])
+        print("처리: " + str(tuple[1]) + " (우선순위: " + str(tuple[0]) + ")")
     pass
         
     return processed
