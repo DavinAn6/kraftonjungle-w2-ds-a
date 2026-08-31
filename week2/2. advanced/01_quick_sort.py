@@ -35,21 +35,44 @@ def partition(arr, low, high):
         피벗의 최종 위치 인덱스
     """
     # TODO: 피벗을 선택 (일반적으로 마지막 원소)
+    pivot_index = high
     pass
     
+    """ 
+    Uses Lomuto partition instead of Hoare
+    i tracks the last position known to hold a "small" element. 
+    Every time you find a new small element, you bump i and swap it into that boundary spot, 
+    growing the "confirmed small" region by one each time. 
+    At the end, that region ends right before where the pivot belongs, so you swap the pivot into i+1
+    array => [less than or equal to pivot] + [greater than pivot]
+    """
     # TODO: i는 작은 원소들의 마지막 인덱스를 추적
+    i = low -1
     pass
     
+    """ 
+    Note : Lomuto partition doesn't necessarily have to implement strict comparison
+    Duplicate values of pivot
+    """
     # TODO: low부터 high-1까지 순회하면서
     ## 현재 원소가 피벗보다 작거나 같으면:
     ##   1. i를 1 증가
     ##   2. arr[i]와 arr[j]를 교환
+    for j in range(low, high):
+        if arr[j] <= arr[pivot_index]:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
     pass
     
     # TODO: 피벗을 올바른 위치(i+1)에 배치
+    arr[i+1], arr[pivot_index] = arr[pivot_index], arr[i+1]
     pass
     
     return i + 1
+
+
+
+
 
 def quick_sort_helper(arr, low, high):
     """
@@ -64,7 +87,20 @@ def quick_sort_helper(arr, low, high):
     ## 분할하여 피벗 인덱스 얻기
     ## 피벗 왼쪽 부분 재귀 정렬
     ## 피벗 오른쪽 부분 재귀 정렬
+    
+    if (low < high):    # If arr isn't single element, then continue sorting
+        partition_val = partition(arr, low, high)   
+        # left of partition = less than or equal to pivot
+        # right of partition = greater than pivot
+        
+        if (low < (partition_val - 1)):     # If left of partition has more than one element, then continue recursion
+            quick_sort_helper(arr, low, (partition_val - 1))
+        if ((partition_val + 1) < high):    # If right of partition has more than one element, then continue recursion
+            quick_sort_helper(arr, (partition_val + 1), high)
     pass 
+    
+    
+    
     
 
 def quick_sort(arr):
@@ -79,6 +115,12 @@ def quick_sort(arr):
     """
     quick_sort_helper(arr, 0, len(arr) - 1)
     return arr
+
+
+
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
