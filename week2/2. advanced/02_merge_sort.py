@@ -35,7 +35,6 @@ def merge(arr, left, mid, right):
     # TODO: 왼쪽과 오른쪽 부분 배열을 임시 배열로 복사
     left_arr = arr[left:mid + 1]
     right_arr = arr[mid + 1:right + 1]
-    pass
     
     # TODO: 두 배열을 병합
     merge_arr = []
@@ -54,13 +53,13 @@ def merge(arr, left, mid, right):
     l = 0
     r = 0
     while l < len(left_arr) and r < len(right_arr):
-        if left_arr[l] < right_arr[r]:      # If left array is smaller add to merge array and move index
+        if left_arr[l] < right_arr[r]:      
             merge_arr.append(left_arr[l])
             l += 1
-        elif left_arr[l] > right_arr[r]:    # If right array is smaller add to merge array and move index
+        elif left_arr[l] > right_arr[r]:   
             merge_arr.append(right_arr[r])
             r += 1
-        elif left_arr[l] == right_arr[r]:   # If duplicate, add both and move both indices
+        elif left_arr[l] == right_arr[r]:
             merge_arr.append(left_arr[l])
             merge_arr.append(right_arr[r])
             l += 1
