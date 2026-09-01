@@ -68,7 +68,44 @@ def n_queens(n: int) -> int:
     #       ...
     #   place(0)
     #   return count
-    pass
+    
+    board = [0] * n
+    count = 0
+    
+    def place(row):  # Helper method for checking each element in row
+      nonlocal count
+      
+      
+      if row >= n+1:
+        count += 1
+        return
+      
+      # —————————————————————————————————————————————————
+      for potential_col in range(1, n+1): # Go through each element (i.e. column value) in row
+        # Check for column collision. No value can appear the same
+        # i is the column number we are thinking of adding to the fixed row
+        no_diagonal = True
+        
+        # 1. If potential_column is already in board, it cannot be added. 
+        # Move to next iteration (the next potential_col)
+        if (potential_col in board): 
+          # print(str(potential_col) + " doesn't meet 1st condition at row" + str(row))
+          continue
+        
+        # 2. Check prexisting elements if they are diagonal to potential location
+        for existing_row, existing_col in enumerate(board[:row]): 
+          if (row - existing_row - 1) == abs(potential_col - existing_col):
+            # print(str(potential_col) + " doesn't meet 2nd condition at row" + str(row))
+            no_diagonal = False
+            break
+        
+        if (no_diagonal == True):
+          board[row-1] = potential_col  # Go down branch
+          place(row + 1)
+          board[row-1] = 0  # Come up branch 
+      return        
+    place(1)
+    return count
 
 
 if __name__ == "__main__":
