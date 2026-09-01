@@ -48,7 +48,7 @@ def process_emergency_room(patients):
     I've reordered the tuple when adding to the heap to account for this.
     """
     # TODO: 모든 환자를 힙에 추가
-    heap = [(b, a) for (a, b) in patients]
+    heap = [(b, a) for (a, b) in patients]  # swap order of tuple to be (priority, name)
     heapq.heapify(heap)
     pass
         
@@ -64,6 +64,10 @@ def process_emergency_room(patients):
     pass
         
     return processed
+
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":

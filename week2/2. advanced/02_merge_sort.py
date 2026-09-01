@@ -39,20 +39,28 @@ def merge(arr, left, mid, right):
     
     # TODO: 두 배열을 병합
     merge_arr = []
-    pass
+    """ 
+    Note : No need to build merge_arr and concatenate. One could edit arr directly using a write pointer.
+    This approach is better to save space 
+    (not an asymptotic improvement since still O(n) extra space but avoids an unnecessary intermediate list)
+    
+    
+    
+    """
+    
     
     
     # TODO: left_arr와 right_arr를 비교하며 작은 값을 arr에 복사
     l = 0
     r = 0
     while l < len(left_arr) and r < len(right_arr):
-        if left_arr[l] < right_arr[r]:
+        if left_arr[l] < right_arr[r]:      # If left array is smaller add to merge array and move index
             merge_arr.append(left_arr[l])
             l += 1
-        elif left_arr[l] > right_arr[r]:
+        elif left_arr[l] > right_arr[r]:    # If right array is smaller add to merge array and move index
             merge_arr.append(right_arr[r])
             r += 1
-        elif left_arr[l] == right_arr[r]:
+        elif left_arr[l] == right_arr[r]:   # If duplicate, add both and move both indices
             merge_arr.append(left_arr[l])
             merge_arr.append(right_arr[r])
             l += 1
@@ -62,9 +70,6 @@ def merge(arr, left, mid, right):
     # left_arr에 남은 원소가 있으면 복사
     # right_arr에 남은 원소가 있으면 복사
     arr[left:right + 1] = merge_arr + left_arr[l:len(left_arr)] + right_arr[r:len(right_arr)]
-    pass
-
-
 
 
 def merge_sort_helper(arr, left, right):
@@ -82,18 +87,13 @@ def merge_sort_helper(arr, left, right):
     ## 오른쪽 절반 재귀 정렬
     ## 정렬된 두 절반을 병합
     
-    mid = left + ((right - left + 1)//2) - 1
+    mid = (left + right)//2 # Note : for odd size arrays, middle element splits to left
     
     if (left < right):
-        if (left < mid):        # left_arr is not a single element. continue sort with recursion
-            merge_sort_helper(arr, left, mid)
-        if ((mid + 1) < right): # right_arr is not a single element. continue sort with recursion
-            merge_sort_helper(arr, mid + 1, right)
+        merge_sort_helper(arr, left, mid)
+        merge_sort_helper(arr, mid + 1, right)
         merge(arr, left, mid, right)
-    pass
-
-
-
+        
 
 def merge_sort(arr):
     """
@@ -108,6 +108,11 @@ def merge_sort(arr):
     if len(arr) > 1:
         merge_sort_helper(arr, 0, len(arr) - 1)
     return arr
+
+
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
