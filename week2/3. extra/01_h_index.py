@@ -1,43 +1,21 @@
 import heapq
 
+""" 
+Given an array of integers citations where citations[i] is the number of citations a researcher received for their i(th) paper, return the researcher's h-index.
+According to the definition of h-index on Wikipedia: The h-index is defined as the maximum value of h such that the given researcher has published at least h papers that have each been cited at least h times.
+Constraints:
+  - n == citations.length
+  - 1 <= n <= 5000
+  - 0 <= citations[i] <= 1000
+  
+The h-index is the largest h such that h articles have at least h citations each. 
+For example, if an author has five publications, with 9, 7, 6, 2, and 1 citations (ordered from greatest to least), 
+then the author's h-index is 3, because the author has three publications with 3 or more citations. 
+However, the author does not have four publications with 4 or more citations.
+"""
+
 def hIndex(citations):
-    
-    # paper_count = ciitations.count(max_citations)
 
-    # for paper in citations:
-    #     if citations[paper] >= max_citations:
-    #         paper_count += 1
-
-
-
-    # Gotta iterate grabbing the max citation number until there is nothing left
-    # How to ignore duplciate max values
-    # Can't remove the max value because we need to check citations later
-    # How to jump through largest values without sorting?
-    # Maybe just go through duplicates as well... but still how to get next max
-    
-    # if (sum(citations) == 0):
-    #     return 0
-    # if (len(citations) == 1):
-    #     return 1
-    
-    # citations_heap = list(citations)
-    # heapq._heapify_max(citations_heap)
-    
-    # while citations_heap:
-    #     max_citations = heapq._heappop_max(citations_heap)
-    #     h_index = [i for i in citations if i >= max_citations]
-    #     if len(h_index) >= max_citations:
-    #         return max_citations
-    
-    # Change directions : decrease number of papers, until there is enough citations to equal
-    # Otherwise we need to have tuples of (unique value, # of occurrance)
-    
-    
-    # If n = citations.length, 
-    # For i = n~1, find if there are enough values that are >= than i
-    
-    
     """ 
     TRIAL 1:
         - Let n = citations.length
