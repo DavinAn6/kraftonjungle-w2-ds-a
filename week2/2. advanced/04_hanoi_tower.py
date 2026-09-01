@@ -57,10 +57,12 @@
 """
 
 
+import math
+
 def hanoi_count(n: int) -> int:
     """N 개의 원반을 옮기는 데 필요한 최소 이동 횟수( = 2^N - 1) 를 반환"""
     # TODO: 2^N - 1 을 정수로 반환하세요.
-    pass
+    return int(math.pow(2, n)) - 1
 
 
 def hanoi_moves(n: int) -> list:
@@ -73,7 +75,28 @@ def hanoi_moves(n: int) -> list:
     """
     # TODO: N > 20 또는 N == 0 인 경우 [] 를 반환하세요.
     # TODO: 그 외에는 재귀로 이동 순서를 만들어 반환하세요.
-    pass
+    
+    
+    if (n>20) or (n==0):
+        return []
+
+    transfer_order = []
+    def hanoi_helper(n, source, target, auxiliary):
+        if n == 1:
+            transfer_order.append((source, target))
+            return
+        else: 
+            hanoi_helper(n-1, source, auxiliary, target)    # Move the top (n-1) disks to the aux pillar
+            transfer_order.append((source, target))      # Move the final n_th diisk to the target pillar
+            hanoi_helper(n-1, auxiliary, target, source)    # Move (n-1) disks in the aux pillar to the target pillar
+        return
+            
+    hanoi_helper(n, 1, 3, 2)
+    return transfer_order
+
+
+
+
 
 
 if __name__ == "__main__":
