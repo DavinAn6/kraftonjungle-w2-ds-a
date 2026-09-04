@@ -1,6 +1,8 @@
 """
 [그래프 기본 - 인접 리스트 표현]
 
+인접 리스트 (Adjacency List)
+
 문제 설명:
 - 그래프를 인접 리스트로 표현합니다.
 - 간선(edge)을 추가하고 출력합니다.
@@ -28,6 +30,8 @@
 - 무방향 그래프는 양방향 추가
 """
 
+
+
 def create_graph(vertices, edges, directed=False):
     """
     그래프 생성 (인접 리스트)
@@ -40,15 +44,38 @@ def create_graph(vertices, edges, directed=False):
     Returns:
         그래프 딕셔너리
     """
+    
+    
     # TODO: 빈 그래프 초기화
-    pass
+    adjacency_list = {}
+    for v in range(0, vertices):
+        adjacency_list[v] = []
+    """ 
+    Initialized adjacency_list = {0:[], 1:[], 2:[], 3:[]}
+    """
+    
     
     # TODO: 간선 추가
     ## 간선 추가 (u에서 v로)
     ## 무방향 그래프면 반대 방향도 추가
-    pass
+    for e in edges:
+        adjacency_list[e[0]] = adjacency_list[e[0]] + [e[1]]
+        if directed == False:
+            adjacency_list[e[1]] = adjacency_list[e[1]] + [e[0]]
+    """ 
+    For directed edge [0, 1], it goes from 0 → 1
+    We edit dictionary to be as follows
+        {0:[1], 1:[], 2:[], 3:[]}
+    If graph is undirected, we add the opposite direction as well.
+        {0:[1], 1:[0], 2:[], 3:[]}
+    Note that the value in dictionary is a list so we're merging the new vertex using + operator
+    """
     
-    return graph
+    # print(adjacency_list)
+    return adjacency_list
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
