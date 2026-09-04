@@ -30,6 +30,11 @@ BFS: [0, 1, 2, 3]
 - 가까운 것부터 방문
 """
 
+
+
+
+
+
 from collections import deque
 
 def bfs(graph, start):
@@ -47,15 +52,27 @@ def bfs(graph, start):
     
     # TODO: 큐 생성 및 시작 정점 추가
     ## 방문한 정점 집합
-    pass
+    graph_deque = deque([start])
+    """ 
+    pop the root node and add neighboring ones to graph_deque
+    """
 
     # TODO: 큐가 빌 때까지 반복
     ## 큐에서 정점 꺼내기
     ## 인접한 정점들 확인
     ## 방문하지 않은 정점이면 큐에 추가
-    pass
-    
+    while len(graph_deque) != 0:
+        node = graph_deque.popleft()
+        visited.append(node)
+        
+        for neighbor in graph[node]:
+            if (neighbor not in visited) and (neighbor not in graph_deque):
+                graph_deque.append(neighbor) 
+        
     return visited
+
+
+
 
 # 테스트 케이스
 if __name__ == "__main__":
