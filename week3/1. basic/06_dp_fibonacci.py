@@ -86,7 +86,9 @@ def fibonacci_memo(n, memo=None):
         memo = {}
     
     # TODO: base case 
-    if n == 0:
+    if n < 0:
+        return n
+    elif n == 0:
         return 0
     elif n == 1:
         return 1
@@ -100,7 +102,6 @@ def fibonacci_memo(n, memo=None):
     memo[n-1] = fibonacci_memo(n-1, memo)
     memo[n-2] = fibonacci_memo(n-2, memo)
     memo[n] = memo[n-1] + memo[n-2]
-    
     return memo[n]
 
 
