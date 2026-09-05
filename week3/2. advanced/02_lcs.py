@@ -1,5 +1,5 @@
 """
-[동적 계획법 - 최장 공통 부분수열 (Longest Common Subsequence, LCS)]
+[동적 계획법 (Dynamic Programming) - 최장 공통 부분수열 (Longest Common Subsequence, LCS)]
 
 ▣ 문제 배경
 - 두 문자열에서 동시에 등장하면서 "원래 순서를 유지" 하는 가장 긴 부분수열의 길이를
@@ -40,7 +40,53 @@ def lcs_length(s1: str, s2: str) -> int:
     # TODO: (len(s1)+1) x (len(s2)+1) 크기의 2차원 dp 배열을 0 으로 초기화
     # TODO: 이중 반복문으로 점화식에 따라 dp 채우기
     # TODO: dp[len(s1)][len(s2)] 반환
-    pass
+    
+    m = len(s1)   # rows
+    n = len(s2)   # cols
+    
+    if m == 0 or n == 0:
+      return 0
+    dp = [[0]*(n+1)]*(m+1)     # [[0]*cols]*rows
+
+    for i in range(1, m+1):
+      for j in range(1, n+1):
+        if s1[i-1] == s2[j-1]:
+          dp[i][j] = 1 + dp[i-1][j-1]
+        else:
+          dp[i][j] = max(dp[i-1][j], dp[i][j-1])
+    return dp[m][n]
+
+
+"""
+NOTE
+  - This script uses Tabulation DP strategy to solve the LCS problem
+  
+    [Plain Recursion]
+      - Given two strings s1(length m) and s2(length n), compare the last characters of s1 & s2. 
+      - If they match, make recursion call for the remaining strings (strings of lengths m-1 and n-1) and add 1 to result.
+      - If they do not match, make two recursive calls.
+        1) First for lengths m-1 and n. 2) Second for m and n-1. 
+        Take the maximum of the two results
+        
+    [Memoization : recursion + cache]
+      - Create a 2D array of size (m+1) x (n+1) initialized to -1 to indicate nothing is computed initially.
+      - Modify recursion solution to first lookup in array if the value is -1, then make the recursive call.
+      - This way we avoid recomputing the same subproblem
+      
+    [Tabulation : loop + table]
+      - Create a 2D array 'dp' of size (m+1) x (n+1) and intialize to all 0
+      - For dp[i][j], compare the ith letter of s1 and jth letter of s2.
+      - If they match, insert insert 1 + dp[i-1][j-1]
+      - If they do not match, insert max(dp[i-1][j], dp[i][j-1])
+      - dp[row][col]
+      
+  - Tabulation gives O(m*n) time complexity and O(m*n) space complexity.
+  - There are aditional variant strategies that improve the time and space complexity.
+    EX) Space Optimized two 1D arrays : O(m*n) time, O(m) space
+        Space Optimized single array : O(m*n) time, O(n) space
+"""
+
+
 
 
 if __name__ == "__main__":
